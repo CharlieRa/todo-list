@@ -1,38 +1,39 @@
 <ion-header>
-  <ion-toolbar color="dark shade"> <ion-title> ToDo List </ion-title> </ion-toolbar>
+  <ion-toolbar color="dark shade">
+    <ion-title> ToDo List </ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content color="medium shade">
-  <ion-card class="welcome-card" color="dark tint" *ngFor="let todo of todos">
-    <!-- <ion-img src="/assets/shapes.svg"></ion-img> -->
+  <ion-card class="todo-card" color="dark tint" *ngFor="let todo of todoList">
     <ion-card-header>
-      <ion-card-subtitle> {{ todo.subtitle }} </ion-card-subtitle>
-      <ion-card-title>{{ todo.title }}</ion-card-title>
+      <ion-card-subtitle> {{ todo.title }} </ion-card-subtitle>
+      <ion-card-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1">
+              <div>
+                <ion-checkbox
+                  color="light"
+                  [(ngModel)]="todo.done"
+                ></ion-checkbox>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                <span
+                  [ngClass]="{ 'strike-text': todo.done }"
+                  (click)="todo.done = !todo.done"
+                  >{{ todo.task }}</span
+                >
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-checkbox color="light"  [(ngModel)]="todo.done"></ion-checkbox>
-      <span>{{ todo.task }}</span>
+      <p>{{ todo.detail }}</p>
     </ion-card-content>
   </ion-card>
-  <!-- <ion-list lines="none">
-      <ion-list-header>
-        <ion-label>Resources</ion-label>
-      </ion-list-header>
-      <ion-item href="https://beta.ionicframework.com/docs/">
-        <ion-icon slot="start" color="medium" name="book"></ion-icon>
-        <ion-label>Ionic Documentation</ion-label>
-      </ion-item>
-      <ion-item href="https://beta.ionicframework.com/docs/building/scaffolding">
-        <ion-icon slot="start" color="medium" name="build"></ion-icon>
-        <ion-label>Scaffold Out Your App</ion-label>
-      </ion-item>
-      <ion-item href="https://beta.ionicframework.com/docs/layout/structure">
-        <ion-icon slot="start" color="medium" name="grid"></ion-icon>
-        <ion-label>Change Your App Layout</ion-label>
-      </ion-item>
-      <ion-item href="https://beta.ionicframework.com/docs/theming/basics">
-        <ion-icon slot="start" color="medium" name="color-fill"></ion-icon>
-        <ion-label>Theme Your App</ion-label>
-      </ion-item>
-    </ion-list> -->
 </ion-content>

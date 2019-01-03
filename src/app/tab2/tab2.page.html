@@ -1,9 +1,39 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab Two
-    </ion-title>
+  <ion-toolbar color="dark shade">
+    <ion-title> Tab Two </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content color="medium shade">
+  <ion-card class="todo-card" color="dark tint" *ngFor="let todo of todoListDone">
+    <ion-card-header>
+      <ion-card-subtitle> {{ todo.title }} </ion-card-subtitle>
+      <ion-card-title>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="1">
+              <div>
+                <ion-checkbox
+                  color="light"
+                  [(ngModel)]="todo.done"
+                ></ion-checkbox>
+              </div>
+            </ion-col>
+            <ion-col>
+              <div>
+                <span
+                  [ngClass]="{ 'strike-text': todo.done }"
+                  (click)="todo.done = !todo.done"
+                  >{{ todo.task }}</span
+                >
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>{{ todo.detail }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
