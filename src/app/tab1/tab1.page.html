@@ -4,10 +4,15 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- /* Begin of content of the todo */ -->
 <ion-content color="medium shade">
+  <!-- /* Cards with the todo info */ -->
   <ion-card class="todo-card" color="dark tint" *ngFor="let todo of todoList">
+    <!-- /* Todo header */ -->
     <ion-card-header>
+      <!-- /* Card subtitle - Todo Title */ -->
       <ion-card-subtitle> {{ todo.title }} </ion-card-subtitle>
+      <!-- /* Card Title - Todo Task */ -->
       <ion-card-title>
         <ion-grid>
           <ion-row>
@@ -32,8 +37,16 @@
         </ion-grid>
       </ion-card-title>
     </ion-card-header>
+    <!-- /* Card content */ -->
     <ion-card-content>
       <p>{{ todo.detail }}</p>
     </ion-card-content>
   </ion-card>
+
+  <!-- /* Fab button for add new todo */ -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="dark" (click)="presentModal()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
