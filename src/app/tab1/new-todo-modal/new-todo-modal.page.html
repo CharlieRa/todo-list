@@ -5,42 +5,49 @@
 </ion-header>
 
 <ion-content color="medium shade">
-  <ion-grid>
-    <!-- /* Input with the title todo */ -->
-    <ion-row>
-      <ion-col>
-        <ion-item color="dark">
-          <ion-label position="fixed">Title</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <!-- /* Input with detail task */ -->
-    <ion-row>
-      <ion-col>
-        <ion-item color="dark">
-          <ion-label position="fixed">Task</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <!-- /* Input with detail task */ -->
-    <ion-row>
-      <ion-col>
-        <ion-item color="dark">
-          <ion-label position="fixed">Detail</ion-label>
-          <ion-input></ion-input>
-        </ion-item>
-      </ion-col>
-    </ion-row>
-    <!-- /* Save button */ -->
-    <ion-row>
-      <ion-col>
-        <ion-button color="dark shade" expand="block">
-          Add Todo
-          <ion-icon slot="end" name="check"></ion-icon>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <form [formGroup]="newTodoForm" (submit)="addTodo()">
+    <ion-grid>
+      <!-- /* Input with the title todo */ -->
+      <ion-row>
+        <ion-col>
+          <ion-item color="dark">
+            <ion-label position="fixed">Title</ion-label>
+            <ion-input formControlName="title" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- /* Input with detail task */ -->
+      <ion-row>
+        <ion-col>
+          <ion-item color="dark">
+            <ion-label position="fixed">Task</ion-label>
+            <ion-input formControlName="task" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- /* Input with detail task */ -->
+      <ion-row>
+        <ion-col>
+          <ion-item color="dark">
+            <ion-label position="fixed">Detail</ion-label>
+            <ion-input formControlName="detail" type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <!-- /* Save button */ -->
+      <ion-row>
+        <ion-col>
+          <ion-button
+            color="dark shade"
+            expand="block"
+            type="submit"
+            [disabled]="!newTodoForm.valid"
+          >
+            Add Todo
+            <ion-icon slot="end" name="check"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
 </ion-content>

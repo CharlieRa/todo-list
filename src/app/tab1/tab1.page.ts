@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ModalController } from "@ionic/angular";
-import { TodoService } from "../services";
+import { TodoService, FirebaseService } from "../services";
 import { Task } from "../models";
 import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
 
@@ -10,18 +10,20 @@ import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
   styleUrls: ["tab1.page.scss"]
 })
 export class Tab1Page implements OnInit {
-  todoList: Task[];
+  todoList;
 
   constructor(
     private todoService: TodoService,
-    public modalController: ModalController
+    public modalController: ModalController,
+    private firebaseService: FirebaseService
   ) {}
 
   ngOnInit() {
-    this.todoList = this.todoService.getTodoList();
-    console.log(this.todoList);
+    this.todoList = this.firebaseService.getTodoList().valueChanges();
   }
-
+  /**
+   * Muestra modal con formulario para agergar nuevo todo
+   */
   async presentModal() {
     const modal = await this.modalController.create({
       component: NewTodoModal,

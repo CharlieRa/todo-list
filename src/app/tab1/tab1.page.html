@@ -7,7 +7,11 @@
 <!-- /* Begin of content of the todo */ -->
 <ion-content color="medium shade">
   <!-- /* Cards with the todo info */ -->
-  <ion-card class="todo-card" color="dark tint" *ngFor="let todo of todoList">
+  <ion-card
+    class="todo-card"
+    color="dark tint"
+    *ngFor="let todo of (todoList | async)"
+  >
     <!-- /* Todo header */ -->
     <ion-card-header>
       <!-- /* Card subtitle - Todo Title */ -->

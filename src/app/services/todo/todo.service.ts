@@ -9,18 +9,18 @@ export class TodoService {
 
   constructor() {
     this.todoList = [
-      new Task(1, "Douglas  Pace", "Douglas  Pace", "Douglas  Pace", false),
-      new Task(1, "Douglas  Pace", "Douglas  Pace", "Douglas  Pace", true)
+      // new Task(1, "Douglas  Pace", "Douglas  Pace", "Douglas  Pace", false),
+      // new Task(1, "Douglas  Pace", "Douglas  Pace", "Douglas  Pace", true)
     ];
   }
   /**
-   * 
+   *
    */
   getTodoList() {
     return this.todoList;
   }
   /**
-   * 
+   *
    */
   getTodoListDone() {
     return this.todoList.filter(todo => todo.done === true);
