@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController } from "@ionic/angular";
+import { ModalController, LoadingController } from "@ionic/angular";
 import { TodoService, FirebaseService } from "../services";
 import { Task } from "../models";
 import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
@@ -15,7 +15,8 @@ export class Tab1Page implements OnInit {
   constructor(
     private todoService: TodoService,
     public modalController: ModalController,
-    private firebaseService: FirebaseService
+    private firebaseService: FirebaseService,
+    public loadingCtrl: LoadingController
   ) {}
 
   ngOnInit() {

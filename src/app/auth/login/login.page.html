@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-toolbar color="dark shade"> <ion-title>Login</ion-title> </ion-toolbar>
+</ion-header>
+
+<ion-content padding color="medium shade">
+  <form>
+    <ion-grid>
+      <!-- /* Save button */ -->
+      <ion-row>
+        <ion-col>
+          <ion-button
+            color="dark shade"
+            expand="block"
+            (click)="loginWithGoogle()"
+          >
+            Login with Google
+            <ion-icon slot="start" name="google"></ion-icon>
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>
