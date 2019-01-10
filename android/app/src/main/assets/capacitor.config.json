@@ -1,7 +1,0 @@
-{
-  "appId": "com.carlosramart.todo-list",
-  "appName": "todo-list",
-  "bundledWebRuntime": false,
-  "webDir": "www",
-  "linuxAndroidStudioPath": "/snap/android-studio/69/android-studio/bin/studio.sh"
-}

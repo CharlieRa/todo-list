@@ -1,5 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { ModalController, LoadingController } from "@ionic/angular";
+import {
+  ModalController,
+  LoadingController,
+  PopoverController
+} from "@ionic/angular";
 import { TodoService, FirebaseService } from "../services";
 import { Task } from "../models";
 import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
@@ -16,7 +20,8 @@ export class Tab1Page implements OnInit {
     private todoService: TodoService,
     public modalController: ModalController,
     private firebaseService: FirebaseService,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public popoverController: PopoverController
   ) {}
 
   ngOnInit() {
@@ -32,4 +37,16 @@ export class Tab1Page implements OnInit {
     });
     return await modal.present();
   }
+  /**
+   * Show popover for options and log out
+   * @param ev
+   */
+  // async presentPopover(ev: any) {
+  //   const popover = await this.popoverController.create({
+  //     component: PopoverComponent,
+  //     event: ev,
+  //     translucent: true
+  //   });
+  //   return await popover.present();
+  // }
 }

@@ -1,5 +1,5 @@
 {
-  "appId": "com.carlosramart.todo-list",
+  "appId": "com.carlosramart.todolist",
   "appName": "todo-list",
   "bundledWebRuntime": false,
   "webDir": "www",

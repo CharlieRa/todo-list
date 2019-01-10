@@ -7,11 +7,14 @@ import { AuthService } from "../../services";
   styleUrls: ["./login.page.scss"]
 })
 export class LoginPage implements OnInit {
+  user;
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {}
 
   loginWithGoogle() {
-    this.authService.loginWithGoogle();
+    this.user = this.authService.loginWithGoogle();
+    console.log(this.user);
   }
 }
