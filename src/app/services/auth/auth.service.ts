@@ -16,7 +16,7 @@ export class AuthService {
   ) {}
 
   /**
-   * Login with nati google
+   * Login with native google
    */
   async loginWithGoogle(): Promise<void> {
     this.googleService.login({}).then(
@@ -30,7 +30,6 @@ export class AuthService {
           },
           error => console.error("Error storing item", error)
         );
-        // return this.user;
       },
       err => {
         console.log("error");
@@ -49,6 +48,43 @@ export class AuthService {
       },
       err => {
         console.log(err);
+      }
+    );
+  }
+  /**
+   * Get user logged
+   */
+  getUserData() {
+    if (this.user === null) {
+      this.nativeStorage.getItem("todoListGoogleUser").then(
+        data => {
+          console.log(data);
+          this.user = data;
+          return this.user;
+        },
+        error => {
+          this.router.navigate(["/login"]);
+        }
+      );
+    } else {
+      return this.user;
+    }
+  }
+  /**
+   *
+   */
+  isLogged() {
+    this.nativeStorage.getItem("todoListGoogleUser").then(
+      data => {
+        console.log("qwe");
+
+        // if (this.user === null) {
+        //   this.user = data;
+        // }
+        this.router.navigate(["/tabs/tab1"]);
+      },
+      error => {
+        this.router.navigate(["/login"]);
       }
     );
   }

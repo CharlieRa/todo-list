@@ -1,6 +1,11 @@
 <ion-header>
   <ion-toolbar color="dark shade">
     <ion-title> New ToDo </ion-title>
+    <ion-buttons color="white" slot="end">
+      <ion-button (click)="closeModal()">
+        <ion-icon slot="icon-only" name="close"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -11,7 +16,7 @@
       <ion-row>
         <ion-col>
           <ion-item color="dark">
-            <ion-label position="fixed">Title</ion-label>
+            <ion-label>Title</ion-label>
             <ion-input formControlName="title" type="text"></ion-input>
           </ion-item>
         </ion-col>
@@ -20,7 +25,7 @@
       <ion-row>
         <ion-col>
           <ion-item color="dark">
-            <ion-label position="fixed">Task</ion-label>
+            <ion-label>Task</ion-label>
             <ion-input formControlName="task" type="text"></ion-input>
           </ion-item>
         </ion-col>
@@ -29,7 +34,7 @@
       <ion-row>
         <ion-col>
           <ion-item color="dark">
-            <ion-label position="fixed">Detail</ion-label>
+            <ion-label>Detail</ion-label>
             <ion-input formControlName="detail" type="text"></ion-input>
           </ion-item>
         </ion-col>

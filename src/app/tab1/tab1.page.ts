@@ -4,9 +4,10 @@ import {
   LoadingController,
   PopoverController
 } from "@ionic/angular";
-import { TodoService, FirebaseService } from "../services";
-import { Task } from "../models";
+import { FirebaseService, AuthService } from "../services";
 import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
+import { Router } from "@angular/router";
+import { NativeStorage } from "@ionic-native/native-storage/ngx";
 
 @Component({
   selector: "app-tab1",
@@ -15,38 +16,43 @@ import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
 })
 export class Tab1Page implements OnInit {
   todoList;
-
+  user = null;
   constructor(
-    private todoService: TodoService,
+    private authService: AuthService,
     public modalController: ModalController,
     private firebaseService: FirebaseService,
     public loadingCtrl: LoadingController,
-    public popoverController: PopoverController
+    private nativeStorage: NativeStorage,
+    private router: Router
   ) {}
 
   ngOnInit() {
     this.todoList = this.firebaseService.getTodoList().valueChanges();
+    this.getUserData();
   }
   /**
    * Muestra modal con formulario para agergar nuevo todo
    */
   async presentModal() {
+    console.log(this.user.userId);
     const modal = await this.modalController.create({
       component: NewTodoModal,
-      componentProps: { value: 123 }
+      componentProps: { userId: this.user.userId }
     });
     return await modal.present();
   }
-  /**
-   * Show popover for options and log out
-   * @param ev
-   */
-  // async presentPopover(ev: any) {
-  //   const popover = await this.popoverController.create({
-  //     component: PopoverComponent,
-  //     event: ev,
-  //     translucent: true
-  //   });
-  //   return await popover.present();
-  // }
+
+  getUserData() {
+    if (this.user === null) {
+      this.nativeStorage.getItem("todoListGoogleUser").then(
+        data => {
+          console.log("tab", data);
+          this.user = data;
+        },
+        error => {
+          this.router.navigate(["/login"]);
+        }
+      );
+    }
+  }
 }

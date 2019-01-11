@@ -1,5 +1,9 @@
 import { Component, Input, Inject } from "@angular/core";
-import { NavParams, LoadingController, AlertController } from "@ionic/angular";
+import {
+  LoadingController,
+  AlertController,
+  ModalController
+} from "@ionic/angular";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { FirebaseService } from "../../services";
 
@@ -8,17 +12,16 @@ import { FirebaseService } from "../../services";
   templateUrl: "./new-todo-modal.page.html"
 })
 export class NewTodoModal {
-  @Input() value: number;
+  @Input() userId: string;
   newTodoForm: FormGroup;
 
   constructor(
-    navParams: NavParams,
     @Inject(FormBuilder) private formBuilder: FormBuilder,
     public loadingCtrl: LoadingController,
+    public modalController: ModalController,
     public alertCtrl: AlertController,
     private firebaseService: FirebaseService
   ) {
-    console.log(this.value);
     this.newTodoForm = this.formBuilder.group({
       title: [null, Validators.required],
       task: [null, Validators.required],
@@ -26,21 +29,23 @@ export class NewTodoModal {
     });
     // componentProps can also be accessed at construction time using NavParams
   }
-
+  /**
+   * Validate form and create new todo
+   */
   async addTodo() {
     console.log(this.newTodoForm.valid);
     console.log(this.newTodoForm.value);
     const loading = await this.loadingCtrl.create();
 
-    const userId = "carlos";
     const title = this.newTodoForm.value.title;
     const task = this.newTodoForm.value.task;
     const detail = this.newTodoForm.value.detail;
+    console.log(this.userId);
 
-    this.firebaseService.addNewTodo(userId, title, task, detail).then(
+    this.firebaseService.addNewTodo(this.userId, title, task, detail).then(
       () => {
         loading.dismiss().then(() => {
-          // this.router.navigateByUrl("");
+          this.closeModal();
           console.log("loading dismiss");
         });
       },
@@ -48,7 +53,12 @@ export class NewTodoModal {
         console.error(error);
       }
     );
-
     return await loading.present();
+  }
+  /**
+   * Close modal
+   */
+  closeModal() {
+    this.modalController.dismiss();
   }
 }
