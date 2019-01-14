@@ -2,7 +2,7 @@
   <ion-toolbar color="dark shade">
     <ion-title> ToDo List </ion-title>
     <ion-buttons color="white" slot="end">
-      <ion-button>
+      <ion-button (click)="presentPopover($event)">
         <ion-icon slot="icon-only" name="more"></ion-icon>
       </ion-button>
     </ion-buttons>
@@ -25,14 +25,14 @@
       <ion-card-title>
         <ion-grid>
           <ion-row>
-            <ion-col size="1">
+            <!-- <ion-col size="1">
               <div>
                 <ion-checkbox
                   color="light"
                   [(ngModel)]="todo.done"
                 ></ion-checkbox>
               </div>
-            </ion-col>
+            </ion-col> -->
             <ion-col>
               <div>
                 <span

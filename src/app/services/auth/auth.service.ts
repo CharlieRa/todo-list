@@ -76,11 +76,6 @@ export class AuthService {
   isLogged() {
     this.nativeStorage.getItem("todoListGoogleUser").then(
       data => {
-        console.log("qwe");
-
-        // if (this.user === null) {
-        //   this.user = data;
-        // }
         this.router.navigate(["/tabs/tab1"]);
       },
       error => {

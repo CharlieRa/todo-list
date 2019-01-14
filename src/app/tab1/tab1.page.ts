@@ -8,6 +8,7 @@ import { FirebaseService, AuthService } from "../services";
 import { NewTodoModal } from "./new-todo-modal/new-todo-modal.page";
 import { Router } from "@angular/router";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
+import { SettingsPopover } from "../tabs/settings-popover/settings-popover.page";
 
 @Component({
   selector: "app-tab1",
@@ -18,12 +19,13 @@ export class Tab1Page implements OnInit {
   todoList;
   user = null;
   constructor(
-    private authService: AuthService,
+    public authService: AuthService,
     public modalController: ModalController,
-    private firebaseService: FirebaseService,
+    public firebaseService: FirebaseService,
     public loadingCtrl: LoadingController,
-    private nativeStorage: NativeStorage,
-    private router: Router
+    public nativeStorage: NativeStorage,
+    public router: Router,
+    public popoverController: PopoverController
   ) {}
 
   ngOnInit() {
@@ -41,7 +43,9 @@ export class Tab1Page implements OnInit {
     });
     return await modal.present();
   }
-
+  /**
+   *
+   */
   getUserData() {
     if (this.user === null) {
       this.nativeStorage.getItem("todoListGoogleUser").then(
@@ -54,5 +58,17 @@ export class Tab1Page implements OnInit {
         }
       );
     }
+  }
+  /**
+   *
+   */
+  async presentPopover(ev: any) {
+    console.log("click popover", ev);
+    const popover = await this.popoverController.create({
+      component: SettingsPopover,
+      event: ev,
+      translucent: true
+    });
+    return await popover.present();
   }
 }

@@ -5,7 +5,11 @@
 </ion-header>
 
 <ion-content color="medium shade">
-  <ion-card class="todo-card" color="dark tint" *ngFor="let todo of todoListDone">
+  <ion-card
+    class="todo-card"
+    color="dark tint"
+    *ngFor="let todo of todoListDone"
+  >
     <ion-card-header>
       <ion-card-subtitle> {{ todo.title }} </ion-card-subtitle>
       <ion-card-title>
