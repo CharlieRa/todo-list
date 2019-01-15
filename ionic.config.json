@@ -1,5 +1,5 @@
 {
-  "name": "todo-list",
+  "name": "todoslist",
   "integrations": {
     "capacitor": {},
     "cordova": {}
