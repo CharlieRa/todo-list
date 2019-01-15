@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.carlosramart.todolist" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Simple Todo List</name>
+    <name>ToDo List</name>
     <description>Awesome Todo List</description>
     <author email="carlos.ramart@gmail.com" href="http://www.carlosramart.com/">Carlos Ramart</author>
-    <content original-src="index.html" src="http://192.168.43.9:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -14,12 +14,12 @@
     <preference name="ScrollEnabled" value="false" />
     <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="ShowSplashScreenSpinner" value="false"/>
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="FadeSplashScreenDuration" value="300" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="3000" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -86,6 +86,5 @@
     <plugin name="cordova-plugin-googleplus" spec="6.0.0">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.22054706801-rovdfdk41m2f72t23c5k198bqs41nuas" />
     </plugin>
-    <allow-navigation href="http://192.168.43.9:8100" sessionid="b632406b" />
     <engine name="android" spec="7.1.4" />
 </widget>
