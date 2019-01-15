@@ -14,12 +14,20 @@ export class FirebaseService {
 
   constructor(private firestore: AngularFirestore) {}
 
-  getTodoList(): AngularFirestoreCollection<Task> {
+  getTodoList(userId: string): AngularFirestoreCollection<Task> {
     return this.firestore.collection(`todoList`, ref =>
-      ref.where("userId", "==", "carlos")
+      ref.where("userId", "==", userId)
     );
   }
-
+  /**
+   *
+   * @param userId
+   * @param title
+   * @param task
+   * @param detail
+   * @param created
+   * @param done
+   */
   addNewTodo(
     userId: string,
     title: string,

@@ -29,7 +29,6 @@ export class Tab1Page implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.todoList = this.firebaseService.getTodoList().valueChanges();
     this.getUserData();
   }
   /**
@@ -50,8 +49,10 @@ export class Tab1Page implements OnInit {
     if (this.user === null) {
       this.nativeStorage.getItem("todoListGoogleUser").then(
         data => {
-          console.log("tab", data);
           this.user = data;
+          this.todoList = this.firebaseService
+            .getTodoList(this.user.userId)
+            .valueChanges();
         },
         error => {
           this.router.navigate(["/login"]);
