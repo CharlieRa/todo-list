@@ -2,8 +2,8 @@ import { Injectable } from "@angular/core";
 import { GooglePlus } from "@ionic-native/google-plus/ngx";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { Router } from "@angular/router";
-import firebase from "@firebase/app";
-import { AngularFireAuth } from "@angular/fire/auth";
+import { firebase } from "@firebase/app";
+import { auth } from "firebase";
 
 @Injectable({
   providedIn: "root"
@@ -14,8 +14,7 @@ export class AuthService {
   constructor(
     private googleService: GooglePlus,
     private nativeStorage: NativeStorage,
-    private router: Router,
-    private auth: AngularFireAuth
+    private router: Router
   ) {}
 
   /**
@@ -32,15 +31,12 @@ export class AuthService {
         res => {
           this.user = res;
           console.log(this.user);
-          console.log(firebase);
-          // console.log(this.auth.auth.signInWithCredential);
-          const googleCredential = firebase.auth.GoogleAuthProvider.credential(
+          const googleCredential = auth.GoogleAuthProvider.credential(
             res.idToken
           );
           console.log(googleCredential);
 
-          firebase
-            .auth()
+          auth()
             .signInWithCredential(googleCredential)
             .then(response => {
               console.log("firebase response", response);
@@ -54,7 +50,6 @@ export class AuthService {
           );
         },
         err => {
-          console.log("error");
           console.log(err);
         }
       );
@@ -80,7 +75,6 @@ export class AuthService {
     if (this.user === null) {
       this.nativeStorage.getItem("todoListGoogleUser").then(
         data => {
-          console.log(data);
           this.user = data;
           return this.user;
         },

@@ -3,7 +3,7 @@
     <name>ToDo List</name>
     <description>Awesome Todo List</description>
     <author email="carlos.ramart@gmail.com" href="http://www.carlosramart.com/">Carlos Ramart</author>
-    <content original-src="index.html" src="http://192.168.43.9:8100" />
+    <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -86,6 +86,5 @@
     <plugin name="cordova-plugin-googleplus" spec="6.0.0">
         <variable name="REVERSED_CLIENT_ID" value="com.googleusercontent.apps.22054706801-rovdfdk41m2f72t23c5k198bqs41nuas" />
     </plugin>
-    <allow-navigation href="http://192.168.43.9:8100" sessionid="0bcf92b9" />
     <engine name="android" spec="7.1.4" />
 </widget>
