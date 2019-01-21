@@ -3,7 +3,7 @@ import { Task } from "../../models";
 import {
   AngularFirestore,
   AngularFirestoreCollection
-} from "angularfire2/firestore";
+} from "@angular/fire/firestore";
 
 @Injectable({
   providedIn: "root"
