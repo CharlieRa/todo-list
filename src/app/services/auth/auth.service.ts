@@ -2,7 +2,6 @@ import { Injectable } from "@angular/core";
 import { GooglePlus } from "@ionic-native/google-plus/ngx";
 import { NativeStorage } from "@ionic-native/native-storage/ngx";
 import { Router } from "@angular/router";
-import { firebase } from "@firebase/app";
 import { auth } from "firebase";
 
 @Injectable({
@@ -30,20 +29,14 @@ export class AuthService {
       .then(
         res => {
           this.user = res;
-          console.log(this.user);
           const googleCredential = auth.GoogleAuthProvider.credential(
             res.idToken
           );
-          console.log(googleCredential);
-
           auth()
             .signInWithCredential(googleCredential)
-            .then(response => {
-              console.log("firebase response", response);
-            });
+            .then(response => {});
           this.nativeStorage.setItem("todoListGoogleUser", this.user).then(
             () => {
-              console.log("Stored item!");
               this.router.navigate(["/tabs/tab1"]);
             },
             error => console.error("Error storing item", error)
@@ -58,15 +51,27 @@ export class AuthService {
    * Logout google user
    */
   logoutGoogle() {
-    this.googleService.logout().then(
-      res => {
-        this.nativeStorage.remove("todoListGoogleUser");
-        this.router.navigate(["/login"]);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    this.googleService
+      .trySilentLogin({})
+      .then(res => {
+        this.googleService.logout().then(
+          res => {
+            this.nativeStorage.remove("todoListGoogleUser");
+            this.router.navigate(["/login"]);
+          },
+          err => {
+            console.log(err);
+          }
+        );
+      })
+      .catch(error => {
+        this.googleService
+          .disconnect()
+          .then(res => {})
+          .catch(error => {
+            console.log(error);
+          });
+      });
   }
   /**
    * Get user logged

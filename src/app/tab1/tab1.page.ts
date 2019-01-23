@@ -35,7 +35,6 @@ export class Tab1Page implements OnInit {
    * Muestra modal con formulario para agergar nuevo todo
    */
   async presentModal() {
-    console.log(this.user.userId);
     const modal = await this.modalController.create({
       component: NewTodoModal,
       componentProps: { userId: this.user.userId }
@@ -64,11 +63,11 @@ export class Tab1Page implements OnInit {
    *
    */
   async presentPopover(ev: any) {
-    console.log("click popover", ev);
     const popover = await this.popoverController.create({
       component: SettingsPopover,
       event: ev,
-      translucent: true
+      translucent: true,
+      backdropDismiss: true
     });
     return await popover.present();
   }

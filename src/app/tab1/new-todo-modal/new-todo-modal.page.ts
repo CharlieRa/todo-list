@@ -33,20 +33,15 @@ export class NewTodoModal {
    * Validate form and create new todo
    */
   async addTodo() {
-    console.log(this.newTodoForm.valid);
-    console.log(this.newTodoForm.value);
     const loading = await this.loadingCtrl.create();
-
     const title = this.newTodoForm.value.title;
     const task = this.newTodoForm.value.task;
     const detail = this.newTodoForm.value.detail;
-    console.log(this.userId);
 
     this.firebaseService.addNewTodo(this.userId, title, task, detail).then(
       () => {
         loading.dismiss().then(() => {
           this.closeModal();
-          console.log("loading dismiss");
         });
       },
       error => {
